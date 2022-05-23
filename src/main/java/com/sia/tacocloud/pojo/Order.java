@@ -6,24 +6,32 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Data
 public class Order {
 
+    private Long id;
+    private Date placedAt;
+
     @NotBlank(message = "Name is required")
-    private String name;
+    private String deliveryName;
 
     @NotBlank(message = "Street is required")
-    private String street;
+    private String deliveryStreet;
 
     @NotBlank(message = "City is required")
-    private String city;
+    private String deliveryCity;
 
     @NotBlank(message = "State is required")
-    private String state;
+    @Size(max = 2,message = "最大长度为2")
+    private String deliveryState;
 
     @NotBlank(message = "Zip code is required")
-    private String zip;
+    private String deliveryZip;
 
     @CreditCardNumber(message = "Not a valid credit card number")
     private String ccNumber;
@@ -35,4 +43,8 @@ public class Order {
     @Digits(integer = 3,fraction = 0,message = "Invalid CVV")
     private String ccCVV;
 
+    private List<Taco> tacos = new ArrayList<>();
+    public void addDesign(Taco taco){
+        this.tacos.add(taco);
+    }
 }
