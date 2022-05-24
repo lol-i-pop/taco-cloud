@@ -3,7 +3,6 @@ package com.sia.tacocloud.controller;
 import com.sia.tacocloud.data.OrderRepository;
 import com.sia.tacocloud.pojo.Order;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -41,7 +40,7 @@ public class OrderController {
         }
         orderRepo.save(order);
         sessionStatus.setComplete(); //重置session
-        log.info("Order submitted: "+order);
+//        log.info("Order submitted: "+order);
         return "redirect:/";
     }
 }
